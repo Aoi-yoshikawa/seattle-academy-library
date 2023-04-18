@@ -61,7 +61,7 @@ public class BooksService {
 	 */
 	public int registBook(BookDetailsInfo bookInfo) {
 		// TODO 取得した書籍情報を登録し、その書籍IDを返却するようにSQLを修正（タスク４）
-		String sql = "insert into books (title, author, publisher, publish_date, thmbnail_name, thumbnail_url, isbn, description, reg_date, upd_date)"
+		String sql = "insert into books (title, author, publisher, publish_date, thumbnail_name, thumbnail_url, isbn, description, reg_date, upd_date)"
 				+ "value (?, ?, ?, ?, ?, ?, ?, ?, now(), now()) returning id;";
 
 		int bookId = jdbcTemplate.queryForObject(sql, int.class, bookInfo.getTitle(), bookInfo.getAuthor(),
@@ -95,7 +95,7 @@ public class BooksService {
 					bookInfo.getPublishDate(), bookInfo.getIsbn(), bookInfo.getDescription(), bookInfo.getBookId());
 		} else {
 			// TODO 取得した書籍情報を更新するようにSQLを修正（タスク５）
-			sql = "UPDATE books SET title = ?,author = ?,publisher = ?,publish_date = ?,thmbnail_name = ?,thmbnail_url = ?,isbn = ?,"
+			sql = "UPDATE books SET title = ?,author = ?,publisher = ?,publish_date = ?,thumbnail_name = ?,thumbnail_url = ?,isbn = ?,"
 					+ "description = ?,upd_date = now() WHERE id = ?;";
 			jdbcTemplate.update(sql, bookInfo.getTitle(), bookInfo.getAuthor(), bookInfo.getPublisher(),
 					bookInfo.getPublishDate(), bookInfo.getThumbnailName(), bookInfo.getThumbnailUrl(),
