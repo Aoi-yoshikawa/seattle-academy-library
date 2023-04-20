@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.seattle.library.service.BooksService;
 
@@ -23,7 +22,7 @@ public class DeleteBookController {
 
 	@Transactional
 	@RequestMapping(value = "/deleteBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public String deleteBook(Locale locale, int bookId, MultipartFile file, Model model) {
+	public String deleteBook(Locale locale, int bookId, Model model) {
 
 		// 書籍情報を削除する
 		booksService.deleteBook(bookId);
