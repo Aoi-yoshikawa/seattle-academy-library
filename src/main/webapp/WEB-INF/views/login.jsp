@@ -34,6 +34,12 @@
             </div>
         </div>
         <footer>
+        </form>
+            </div>
+            <div class="authorization_navi">
+                <label class="authorization_text">パスワードを変更されたいですか？</label> <a class="authorization_link marker" href="<%=request.getContextPath()%>/ResetAccount">アカウントをリセット</a>
+            </div>
+        </div>
             <div class="copyright">© 2019 Seattle Consulting Co., Ltd. All rights reserved.</div>
         </footer>
     </div>
