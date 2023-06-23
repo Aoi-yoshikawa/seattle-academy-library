@@ -23,18 +23,34 @@ public class BookInfo {
 
 	private String thumbnail;
 
+	private String favorite;
+
+	private String complete;
+
+	private String genre;
+
+	private String review;
+	
+	private String word;
+
 	public BookInfo() {
 
 	}
 
 	// コンストラクタ
-	public BookInfo(int bookId, String title, String author, String publisher, String publishDate, String thumbnail) {
+	public BookInfo(int bookId, String title, String author, String publisher, String publishDate, String thumbnail,
+			String favorite, String complete, String genre, String review, String word) {
 		this.bookId = bookId;
 		this.title = title;
 		this.author = author;
 		this.publisher = publisher;
 		this.publishDate = publishDate;
 		this.thumbnail = thumbnail;
+		this.favorite = favorite;
+		this.complete = complete;
+		this.genre = genre;
+		this.review = review;
+		this.word = word;
 	}
 
 }
