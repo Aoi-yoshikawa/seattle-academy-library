@@ -1,4 +1,4 @@
-package jp.co.seattle.library.controller;
+
 
 import java.util.Locale;
 
@@ -19,15 +19,15 @@ import jp.co.seattle.library.service.UsersService;
  * アカウント作成コントローラー
  */
 @Controller // APIの入り口
-public class AccountController {
-	final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+public class PasswordResetController {
+	final static Logger logger = LoggerFactory.getLogger(PasswordResetController.class);
 
 	@Autowired
 	private UsersService usersService;
 
 	@RequestMapping(value = "/newAccount", method = RequestMethod.GET) // value＝actionで指定したパラメータ
 	public String createAccount(Model model) {
-		return "createAccount";
+		return "ResetAccount";
 	}
 
 	/**
@@ -40,13 +40,15 @@ public class AccountController {
 	 * @return ホーム画面に遷移
 	 */
 
+	
+	//修了式テスト実装
 	@Transactional
-	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
-	public String createAccount(Locale locale, @RequestParam("email") String email,
+	@RequestMapping(value = "/ResetAccount", method = RequestMethod.POST)
+	public String ResetAccount(Locale locale, @RequestParam("email") String email,
 			@RequestParam("password") String password, @RequestParam("passwordForCheck") String passwordForCheck,
 			Model model) {
 		// デバッグ用ログ
-		logger.info("Welcome createAccount! The client locale is {}.", locale);
+		logger.info("Welcome ResetAccount! The client locale is {}.", locale);
 
 		// バリデーションチェック、パスワード一致チェック（タスク１）
 		if (password.length() >= 8 && password.matches("^[0-9a-zA-Z]+")) {
@@ -59,12 +61,12 @@ public class AccountController {
 				return "redirect:/login";
 
 			} else {
-				model.addAttribute("errorMessage", "パスワードが一致しません。");
-				return "createAccount";
+				model.addAttribute("errorMessage", "パスワードと確認用パスワードが一致していません。");
+				return "ResetAccount";
 			}
 		} else {
-			model.addAttribute("errorMessage", "パスワードは8文字以上かつ半角英数字に設定してください。");
-			return "createAccount";
+			model.addAttribute("errorMessage", "パスワードは８桁以上の半角英数字で設定してください。");
+			return "ResetAccount";
 		}
 	}
 

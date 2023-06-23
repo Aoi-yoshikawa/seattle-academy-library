@@ -30,4 +30,14 @@ public class BookDetailsInfo {
 
 	private String description;
 
+	private String favorite;
+
+	private String complete;
+
+	private String genre;
+
+	private String review;
+	
+	private String word;
+
 }

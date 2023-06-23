@@ -19,15 +19,15 @@ import jp.co.seattle.library.service.UsersService;
  * アカウント作成コントローラー
  */
 @Controller // APIの入り口
-public class AccountController {
+public class PasswordResetController {
 	final static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping(value = "/newAccount", method = RequestMethod.GET) // value＝actionで指定したパラメータ
-	public String createAccount(Model model) {
-		return "createAccount";
+	@RequestMapping(value = "/newPassword", method = RequestMethod.GET) // value＝actionで指定したパラメータ
+	public String passwordReset(Model model) {
+		return "PasswordReset";
 	}
 
 	/**
@@ -41,12 +41,12 @@ public class AccountController {
 	 */
 
 	@Transactional
-	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
-	public String createAccount(Locale locale, @RequestParam("email") String email,
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+	public String passwordreset(Locale locale, @RequestParam("email") String email,
 			@RequestParam("password") String password, @RequestParam("passwordForCheck") String passwordForCheck,
 			Model model) {
 		// デバッグ用ログ
-		logger.info("Welcome createAccount! The client locale is {}.", locale);
+		logger.info("Welcome resetAccount! The client locale is {}.", locale);
 
 		// バリデーションチェック、パスワード一致チェック（タスク１）
 		if (password.length() >= 8 && password.matches("^[0-9a-zA-Z]+")) {
@@ -55,17 +55,17 @@ public class AccountController {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setEmail(email);
 				userInfo.setPassword(password);
-				usersService.registUser(userInfo);
-				return "redirect:/login";
+				usersService.resetUser(userInfo);
 
 			} else {
 				model.addAttribute("errorMessage", "パスワードが一致しません。");
-				return "createAccount";
+				return "PasswordReset";
 			}
 		} else {
 			model.addAttribute("errorMessage", "パスワードは8文字以上かつ半角英数字に設定してください。");
-			return "createAccount";
+			return "PasswordReset";
 		}
+		return "redirect:/";
 	}
 
 }

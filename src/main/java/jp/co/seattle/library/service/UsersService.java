@@ -51,5 +51,15 @@ public class UsersService {
 			return null;
 		}
 	}
+	
+	//修了式テスト実装SQL
+	public void ResetUser(UserInfo userInfo) {
 
+		// SQL生成
+		String sql = "UPDATE INTO users (email, password,reg_date,upd_date) VALUES ('" + userInfo.getEmail() + "','"
+				+ userInfo.getPassword() + "',now(),now()" + ")";
+
+		jdbcTemplate.update(sql);
+	}
+	
 }

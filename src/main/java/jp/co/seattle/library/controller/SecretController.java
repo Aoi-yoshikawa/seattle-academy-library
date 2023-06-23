@@ -17,15 +17,15 @@ import jp.co.seattle.library.service.UsersService;
  * ログインコントローラー
  */
 @Controller /** APIの入り口 */
-public class LoginController {
-	final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+public class SecretController {
+	final static Logger logger = LoggerFactory.getLogger(SecretController.class);
 
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/secretLogin", method = RequestMethod.GET)
 	public String first(Model model) {
-		return "login"; // jspファイル名
+		return "secretLogin"; // jspファイル名
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class LoginController {
 	 * @param model
 	 * @return ホーム画面に遷移
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/secretLogin", method = RequestMethod.POST)//ログインを押した時の処理
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
 
 		// メアドとパスワードに一致するユーザー取得
@@ -44,10 +44,10 @@ public class LoginController {
 
 		// ユーザーが存在すればログイン、存在しなければエラー(タスク２)
 		if (!ObjectUtils.isEmpty(selectedUserInfo)) {
-			return "redirect:/home";
+			return "redirect:/secretBook"; //秘密文庫
 		} else {
 			model.addAttribute("errorMessage","メールアドレスとパスワードが一致しません。");
-			return"login";
+			return"secretLogin"; //秘密文庫ログイン画面
 		}	
 	}
 }

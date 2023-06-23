@@ -20,13 +20,17 @@
         </div>
         <div class="authorization">
             <div class="authorization_form">
-                <form method="post" action="login">
-                    <div class="title">ログイン</div>
+                <form method="post" action="secretLogin">
+                    <div class="title">秘密文庫ログイン</div>
                     <label class="label">メールアドレス</label> <input type="text" class="input" name="email" id="email" autocomplete="off" required /> <label class="label">パスワード</label> <input type="password" class="input" id="password" name="password" required />
                     <c:if test="${!empty errorMessage}">
                         <div class="error">${errorMessage}</div>
                     </c:if>
                     <input type="submit" class="button primary" value="ログイン" />
+                    <p>ホームに戻る↓</p>
+                    <p>
+                        <a href="<%=request.getContextPath()%>/home" class="menu">Home</a>
+                    </p>
                 </form>
             </div>
             <div class="authorization_navi">
